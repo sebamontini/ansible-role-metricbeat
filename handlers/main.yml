@@ -1,15 +1,21 @@
 ---
 
 - name: metricbeat start
-  service: name=metricbeat state=started
+  service:
+    name: metricbeat
+    state: started
   become: yes
 
 - name: metricbeat stop
-  service: name=metricbeat state=stopped
+  service:
+    name: metricbeat
+    state: stopped
   become: yes
 
 - name: metricbeat restart
-  service: name=metricbeat state=restarted
+  service:
+    name: metricbeat
+    state: restarted
   become: yes
 
 - name: systemctl reload
