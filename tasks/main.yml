@@ -2,22 +2,19 @@
 
 - name: Include OS Family vars
   include_vars: "{{ansible_os_family}}.yml"
-  tags: [ 'metricbeat' ] 
+  tags: always
 
 - include: install.yml
-  become: true
-  tags: [ 'metricbeat', 'metricbeat.install' ]
+  tags: metricbeat_install
 
 - include: config.yml
-  become: true
-  tags: [ 'metricbeat', 'metricbeat.config' ]
+  tags: metricbeat_config
 
 - include: template.yml
-  become: true
-  tags: [ 'metricbeat', 'metricbeat.template' ]
+  tags: metricbeat_template
 
 - include: dashboards.yml
-  tags: [ 'metricbeat', 'metricbeat.dashboards' ]
+  tags: metricbeat_dashboards
   when: metricbeat_install_default_kibana_dashboards
 
 - service:
