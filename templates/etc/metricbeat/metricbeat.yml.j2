@@ -1,3 +1,13 @@
 # {{ ansible_managed }}
 
-{{ metricbeat_config }}
+{{ metricbeat_config_modules | to_nice_yaml(indent=2) }}
+
+{{ metricbeat_config_general | to_nice_yaml(indent=2) }}
+
+{{ metricbeat_config_processors | to_nice_yaml(indent=2) }}
+
+{{ metricbeat_config_output | to_nice_yaml(indent=2) }}
+
+{{ metricbeat_config_logging | to_nice_yaml(indent=2) }}
+
+{{ metricbeat_config_other | to_nice_yaml(indent=2) }}
