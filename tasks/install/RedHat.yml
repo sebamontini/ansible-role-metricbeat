@@ -22,9 +22,9 @@
 
 - name: Install MetricBeat .rpm
   yum:
-    name: "{{ metricbeat_baseurl }}/{{ item }}-{{ metricbeat_version }}-x86_64.rpm"
+    name: "{{metricbeat_baseurl}}/{{item}}-{{metricbeat_version}}-x86_64.rpm"
     state: present
-  with_items: "{{ metricbeat_packages }}"
+  with_items: "{{metricbeat_packages}}"
   notify: metricbeat restart
   when: not metricbeat_use_repo
 
