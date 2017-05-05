@@ -2,7 +2,7 @@
 
 An Ansible Role that installs MetricBeat on Red Hat/CentOS or Debian/Ubuntu.
 
-Special thanks to Emiliano Castagnari (https://github.com/torian) for his 
+Special thanks to Emiliano Castagnari (https://github.com/torian) for his
 Filebeat role. This role is based on the code of
  https://github.com/torian/ansible-role-filebeat
 
@@ -147,7 +147,7 @@ metricbeat_es_url: "{{ elasticsearch_proto | default('http') }}://{{ elasticsear
 ```yaml
     - hosts: logging
       roles:
-        - { role: sirkjohannsen.metricbeat }
+        - { role: sebamontini.metricbeat, tags: metricbeat, become: true }
 ```
 
 ## License
@@ -159,4 +159,3 @@ GPLv3
 This role was created in 2016 by Sirk Johannsen.
 It is based on the FileBeat role by Emiliano Castagnari:
 https://github.com/torian/ansible-role-filebeat
-
