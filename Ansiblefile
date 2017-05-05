@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-#^syntax detection
-
-site "https://galaxy.ansible.com/api/v1"
-
-role "metricbeat", path: "./"
