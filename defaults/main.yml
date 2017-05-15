@@ -31,8 +31,8 @@ metricbeat_upgrade: false
 metricbeat_config_file: /etc/metricbeat/metricbeat.yml
 
 # Metricbeat configuration
-#  The configuratlion is built based on a single variable, in YAML format, metricbeat_config.
-#  Just for fun and example, it has been splitted into multiple vars:
+#  The configuratlion has been splitted into multiple vars, in YAML format:.
+#  Then each var is inserted in metricbeat.yml.j2 template:
 #
 #   - metricbeat_config_prospectors
 #   - metricbeat_config_output
@@ -40,7 +40,7 @@ metricbeat_config_file: /etc/metricbeat/metricbeat.yml
 #   - metricbeat_config_logging
 #
 
-metricbeat_config_modules: |
+metricbeat_config_modules:
   metricbeat.modules:
     - module: system
       metricsets:
@@ -75,7 +75,7 @@ metricbeat_config_processors:
 
 metricbeat_config_output:
   output.elasticsearch:
-    hosts: [ 'localhost:9200' ]
+    hosts: [ "{{ metricbeat_es_host | default('localhost:9200') }}" ]
 
 metricbeat_config_logging:
   logging:
@@ -87,8 +87,10 @@ metricbeat_config_logging:
       rotateeverybytes: 10485760
       keepfiles: 7
 
-
-metricbeat_config_other: {}
+# Placeholder for additional configuration
+# metricbeat_config_other: |
+#   other:
+#     - key: value
 
 metricbeat_use_repo: True
 
@@ -99,6 +101,6 @@ metricbeat_install_default_kibana_dashboards: False
 metricbeat_es_user: "metricbeat"
 metricbeat_es_password: "secret"
 metricbeat_kibana_index: ".kibana"
-metricbeat_es_url: "{{ elasticsearch_proto | default('http') }}://{{ elasticsearch_host | default('localhost:9200') }}"
+metricbeat_es_url: "{{ elasticsearch_proto | default('http') }}://{{ metricbeat_es_host | default('localhost:9200') }}"
 
 # vi:ts=2:sw=2:et:ft=yaml
