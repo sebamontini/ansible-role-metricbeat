@@ -60,8 +60,7 @@ MetricBeat configuration file.
 
     metricbeat_config_file: /etc/metricbeat/metricbeat.yml
 
-The MetricBeat configuration is built based on the variable `metricbeat_config`.
-For easier management of the contents, the `metricbeat_config` variable is made
+For easier management of the contents, the Metricbeat configuration is made
 up of multiple other variables:
 
 * `metricbeat_config_modules`
@@ -71,7 +70,7 @@ up of multiple other variables:
 * `metricbeat_config_logging`
 
 ```yaml
-metricbeat_config_modules: |
+metricbeat_config_modules:
   metricbeat.modules:
     - module: system
       metricsets:
@@ -89,7 +88,7 @@ metricbeat_config_modules: |
       processes: ['.*']
       # if true, exports the CPU usage in ticks, together with the percentage values
       cpu_ticks: false
-metricbeat_config_general: |
+metricbeat_config_general:
   name: {{ ansible_hostname }}
   # tags: ['tag1','tag2']
   env: {{ env | default('none') }}
@@ -99,12 +98,12 @@ metricbeat_config_general: |
   # topology_expire: 15
   # queue_size: 1000
   # max_procs:
-metricbeat_config_processors: |
+metricbeat_config_processors:
   processors:
-metricbeat_config_output: |
+metricbeat_config_output:
   output.elasticsearch:
     hosts: [ 'localhost:9200' ]
-metricbeat_config_logging: |
+metricbeat_config_logging:
   logging:
     to_files: true
     files:
@@ -112,16 +111,6 @@ metricbeat_config_logging: |
       name: metricbeat.log
       rotateeverybytes: 10485760 # = 10MB
       keepfiles: 7
-metricbeat_config: |
-  {{metricbeat_config_modules}}
-
-  {{metricbeat_config_general}}
-
-  {{metricbeat_config_processors}}
-
-  {{metricbeat_config_output}}
-
-  {{metricbeat_config_logging}}
 ```
 
 MetricBeat templates (a list of templates to install).
@@ -140,7 +129,7 @@ metricbeat_install_default_kibana_dashboards: False
 metricbeat_es_user: "metricbeat"
 metricbeat_es_password: "secret"
 metricbeat_kibana_index: ".kibana"
-metricbeat_es_url: "{{ elasticsearch_proto | default('http') }}://{{ elasticsearch_host | default('localhost:9200') }}"
+metricbeat_es_url: "{{ elasticsearch_proto | default('http') }}://{{ metricbeat_es_host | default('localhost:9200') }}"
 ```
 
 ## Usage

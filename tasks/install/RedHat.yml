@@ -16,7 +16,7 @@
     state: "{{ (metricbeat_upgrade) | ternary('latest', 'present') }}"
     name: "{{item}}"
     update_cache: yes
-  with_items: metricbeat_packages
+  with_items: "{{metricbeat_packages}}"
   notify: metricbeat restart
   when: metricbeat_use_repo
 

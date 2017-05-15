@@ -10,4 +10,4 @@
 
 {{ metricbeat_config_logging | to_nice_yaml(indent=2) }}
 
-{{ metricbeat_config_other | to_nice_yaml(indent=2) }}
+{{ metricbeat_config_other | default() }}
