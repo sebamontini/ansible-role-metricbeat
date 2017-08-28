@@ -13,7 +13,7 @@ metricbeat_repo_gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
 metricbeat_baseurl: "https://download.elastic.co/beats/metricbeat"
 
 metricbeat_packages:
-  - "metricbeat"
+  - "metricbeat{{ (metricbeat_upgrade) | ternary('', '-' + metricbeat_version) }}"
 
 #metricbeat_defaults_cfg: /etc/sysconfig/metricbeat
 
